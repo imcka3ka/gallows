@@ -1,23 +1,24 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <time.h>
 
 #include "./utils.h"
 
-char* takeWord(void){
-    FILE *file = fopen("wordlist.txt", "r");
+char* takeWord(char wordlist[100][50]){
+    char word[50] = {0};
+    srand(time(NULL));
 
-    char word[100] = {0};
-    static char wordlist[100][100] = {0};
+    FILE *file = fopen("wordlist.txt", "r");
 
     int i;
     for(i = 0; fgets(word, sizeof(word), file); i++){
         word[strcspn(word, "\r\n")] = '\0';
         strcpy(wordlist[i], word);
     }
-    
-    return wordlist[9];
-    
 
+    int random_index = (rand() % i);
+    return wordlist[random_index];
 }
 
 void clearBuffer(void){
@@ -33,6 +34,7 @@ void updateStr(char* word_to_guess, char* hidden_word, char character){
 
 void mainFrame(char* hidden_word,int attempts){
     printf("\nRemaining Attempts:\t%d\n", MAX_ATTEMPTS - attempts);
+    printf("\n%s\n", HANGMAN_STAGES[attempts]);
     printf("\nWord to guess:\t%s\n", hidden_word);
     
 }

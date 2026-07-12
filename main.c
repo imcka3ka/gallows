@@ -5,12 +5,14 @@
 
 int main(void){
     int attempts = 0;
-    char* word_to_guess =  takeWord();
+    char wordlist[100][50] = {0};
+
+    char* word_to_guess =  takeWord(wordlist);
     int len = strlen(word_to_guess);
+
     char hidden_word[len + 1];
     memset(hidden_word, '_', len); 
     hidden_word[len] = '\0';
-
 
     char input = ' ';
     while(1){
@@ -18,15 +20,11 @@ int main(void){
         mainFrame(hidden_word, attempts);
 
         if(strcmp(hidden_word, word_to_guess) == 0){
-            clearScreen();
-            mainFrame(hidden_word, attempts);
             printf("\nCongratz!!. You won.\n");
             break;
         }
 
         if(attempts == MAX_ATTEMPTS){
-            clearScreen();
-            mainFrame(hidden_word, attempts);
             printf("\nI'm sorry, you lost\n");
             break;
         }
