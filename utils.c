@@ -18,6 +18,9 @@ char* takeWord(char wordlist[100][50]){
     }
 
     int random_index = (rand() % i);
+
+    fclose(file);
+    
     return wordlist[random_index];
 }
 
