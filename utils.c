@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <ctype.h>
 
 #include "./utils.h"
 
@@ -44,4 +45,9 @@ void mainFrame(char* hidden_word,int attempts){
 
 void clearScreen(void){
     printf("\033[2J\033[3J\033[H");
+}
+
+int validateInput(int input){
+    if(!isalpha(input)) return 0;
+    else return 1;
 }

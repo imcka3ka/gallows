@@ -1,3 +1,4 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -32,6 +33,13 @@ int main(void){
         printf("Type a letter: ");
         input = getchar();
         clearBuffer();
+        if(validateInput(input)){
+            input = tolower(input);
+        } else {
+            printf("Invalid character. Try again\n");
+            clearScreen();
+            continue;
+        }
 
         if(strchr(word_to_guess, input) == NULL){
             printf("The character isn't in the word\n");
